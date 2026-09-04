@@ -11,8 +11,13 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('historialpreciocompras', function (Blueprint $table) {
+        Schema::create('historialprecio', function (Blueprint $table) {
             $table->id();
+            $table->decimal("precio_unitario", 12, 2);
+            $table->string("moneda", 30);
+            $table->string("origen", 100);
+            $table->foreignId("sucursal_id")->constrained("sucursals")->onDelete("set null");
+            $table->foreignId('producto_id')->nullable()->constrained('productos')->onDelete('set null');
             $table->timestamps();
         });
     }

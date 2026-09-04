@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('facturas', function (Blueprint $table) {
             $table->id();
+            $table->foreignId("compra_id")->nullable()->constrained("compras")->onDelete("set null");
+            $table->foreignId("sucursal_id")->nullable()->constrained("sucursals")->onDelete("set null");
+            $table->integer("numero_comprobante");
+            $table->string("tipo_comprobante");
+            $table->decimal("monto_total", 12, 2);
+            $table->decimal("monto_impuesto", 12, 2);
+            $table->string("url_digitalizacion")->nullable();
             $table->timestamps();
         });
     }

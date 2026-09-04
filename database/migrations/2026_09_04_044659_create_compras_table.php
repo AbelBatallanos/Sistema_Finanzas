@@ -13,7 +13,15 @@ return new class extends Migration
     {
         Schema::create('compras', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->decimal('monto_total', 12, 2);
+            $table->dateTime('fecha_compra');
+            $table->string("metodo_pago", 50);
+            $table->foreignId('comprador_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('lista_compra_id')->constrained('listacompras')->onDelete('cascade');
+            $table->foreignId('provedor_id')->nullable()->constrained('provedores')->onDelete('cascade');
+            $table->foreignId('sucursal_id')->constrained('sucursals')->onDelete('cascade');
+            $table->foreignId('estado_id')->constrained('estados')->onDelete('cascade');
+            $table->timestamps();   
         });
     }
 

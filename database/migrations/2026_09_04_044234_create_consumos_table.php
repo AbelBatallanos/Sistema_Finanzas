@@ -13,6 +13,13 @@ return new class extends Migration
     {
         Schema::create('consumos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId("producto_id")->constrained('productos')->onDelete('cascade');
+            $table->foreignId('sucursal_id')->constrained('sucursals')->onDelete('cascade');
+            $table->decimal('monto', 10, 2);
+            $table->string('descripcion');
+            $table->dateTime('fecha_consumo');
+            $table->foreignId('estado_id')->constrained('estados')->onDelete('cascade');
             $table->timestamps();
         });
     }

@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('sucursals', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string('direccion');
+            $table->string('telefono');
+            $table->foreignId('estado_id')->constrained('estados')->onDelete('cascade');
             $table->timestamps();
         });
     }

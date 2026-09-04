@@ -13,6 +13,10 @@ return new class extends Migration
     {
         Schema::create('productos', function (Blueprint $table) {
             $table->id();
+            $table->string('nombre');
+            $table->string("codigo_barra");
+            $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onDelete('set null');
+            $table->foreignId('unidad_medida_id')->nullable()->constrained('unidad_medidas')->onDelete('set null');
             $table->timestamps();
         });
     }

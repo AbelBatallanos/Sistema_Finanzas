@@ -13,6 +13,9 @@ return new class extends Migration
     {
         Schema::create('inventarios', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('sucursal_id')->constrained('sucursals')->onDelete('cascade');
+            $table->string("nombre", 100);
+            $table->boolean("es_principal")->default(false);
             $table->timestamps();
         });
     }
