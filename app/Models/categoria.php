@@ -4,7 +4,13 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class categoria extends Model
+class Categoria extends Model
 {
-    //
+    
+    protected $fillable = ["nombre"];
+
+    public function productos()
+    {
+        return $this->hasMany(producto::class, 'categoria_id');
+    }
 }

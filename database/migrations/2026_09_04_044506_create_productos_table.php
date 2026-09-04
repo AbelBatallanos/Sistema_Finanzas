@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('nombre');
             $table->string("codigo_barra");
             $table->foreignId('categoria_id')->nullable()->constrained('categorias')->onDelete('set null');
-            $table->foreignId('unidad_medida_id')->nullable()->constrained('unidad_medidas')->onDelete('set null');
+            $table->foreignId('unidad_id')->nullable()->constrained('unidads')->onDelete('set null');
             $table->timestamps();
         });
     }

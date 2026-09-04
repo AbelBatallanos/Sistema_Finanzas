@@ -11,16 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('detalleslistacompras', function (Blueprint $table) {
+        Schema::create('detallecompras', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('listacompra_id')->constrained('listacompras')->onDelete('cascade');
+            $table->decimal('cantidad', 12, 2);
+            $table->decimal('precio_unitario', 12, 2);
+            $table->decimal('subtotal', 12, 2);
+            $table->foreignId('provedor_id')->constrained('provedors')->onDelete('cascade');
+            $table->foreignId('compra_id')->constrained('compras')->onDelete('cascade');
             $table->foreignId('producto_id')->constrained('productos')->onDelete('cascade');
             $table->foreignId('estado_id')->constrained('estados')->onDelete('cascade');
-            $table->decimal('cantidad_min', 12, 2)->nullable();
-            $table->decimal('cantidad_max', 12, 2)->nullable();
-            $table->decimal('precio_unitario_min', 12, 2)->nullable();
-            $table->decimal('precio_unitario_max', 12, 2)->nullable();
-            $table->string("prioridad", 30)->nullable();
+            // $table->dateTime('fecha_vencimiento')->nullable();
             $table->timestamps();
         });
     }
@@ -30,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('detalleslistacompras');
+        Schema::dropIfExists('detallecompras');
     }
 };

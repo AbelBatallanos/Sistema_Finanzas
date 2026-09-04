@@ -18,7 +18,7 @@ return new class extends Migration
             $table->string("metodo_pago", 50);
             $table->foreignId('comprador_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('lista_compra_id')->constrained('listacompras')->onDelete('cascade');
-            $table->foreignId('provedor_id')->nullable()->constrained('provedores')->onDelete('cascade');
+            $table->foreignId('provedor_id')->nullable()->constrained('provedors')->onDelete('cascade');
             $table->foreignId('sucursal_id')->constrained('sucursals')->onDelete('cascade');
             $table->foreignId('estado_id')->constrained('estados')->onDelete('cascade');
             $table->timestamps();   

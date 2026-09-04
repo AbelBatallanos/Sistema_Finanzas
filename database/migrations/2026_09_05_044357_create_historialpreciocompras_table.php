@@ -13,10 +13,10 @@ return new class extends Migration
     {
         Schema::create('historialprecio', function (Blueprint $table) {
             $table->id();
-            $table->decimal("precio_unitario", 12, 2);
+            $table->decimal("precio_unitario", 12, 2)->default(0);
             $table->string("moneda", 30);
             $table->string("origen", 100);
-            $table->foreignId("sucursal_id")->constrained("sucursals")->onDelete("set null");
+            $table->foreignId("sucursal_id")->nullable()->constrained("sucursals")->onDelete("set null");
             $table->foreignId('producto_id')->nullable()->constrained('productos')->onDelete('set null');
             $table->timestamps();
         });
